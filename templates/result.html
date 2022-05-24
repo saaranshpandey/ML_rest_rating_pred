@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles.css') }}">
+	<style>
+	
+	@charset "UTF-8";
+:root {
+  --star-size: 60px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+
+.Stars {
+  --percent: {{(pred/5)*100}}%;
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.Stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #fc0 var(--percent), #fff var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+
+body {
+  background: rgb(143, 230, 230);
+  text-align:center
+}
+
+	</style>
+	
+</head>
+<body>
+
+	<header>
+		<div class="container">
+
+		<h1>Restaurant Ratings Predictor</h1>
+		
+	</div>
+	</header>
+
+	<h2 ><b>Predicted Rating: {{pred}}</b></h2>
+
+	<div class="Stars" style="--rating: {{pred}};" aria-label="Rating of this product is {{pred}} out of 5."></div>
+
+	<h4 ><b>Results for Input: </b></h4>
+	
+	<h5>Votes: {{votes}}</h5>
+	<h5>Location: {{loc}}</h5>
+	<h5>Cost for two people: {{cost}}</h5>
+	<h5>Restaurant Type: {{rest}}</h5>
+	<h5>Online Order Availability: {{onl_ord}}</h5>
+
+
+</body>
+</html>
+

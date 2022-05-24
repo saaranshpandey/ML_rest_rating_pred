@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles.css') }}">
+	<style>
+	body {
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="container">
+
+		<h1>Restaurant Ratings Predictor</h1>
+		
+	</div>
+	</header>
+
+	<div class="ml-container">
+		<form action="{{ url_for('predict')}}" method="POST">
+			<br><br>
+
+				<input  name = "loc" list="loc_list" placeholder="Enter Location"/>
+				<datalist  id="loc_list" >
+					{% for i in location %}
+					<option value = '{{i}}'>{{i}}</option>
+					{% endfor %}
+				</datalist>
+				
+				<input  name = "rest" list="rest_list" placeholder="Enter Restaurant Type"/>
+				<datalist  id = "rest_list">
+					{% for i in rest_type %}
+					<option value= '{{i}}'>{{i}}</option>
+					{% endfor %}
+				</datalist>
+		
+				<input name = "onl_ord" list="onl_ord_list" placeholder="Online Order Availability"/>
+				<datalist id = "onl_ord_list">
+					{% for i in online_order %}
+					<option value= '{{i}}'>{{i}}</option>
+					{% endfor %}
+				</datalist>
+
+				<input type="number" name="votes_val" placeholder="Enter Votes"></input>
+
+				<input type="number" name="cost" placeholder="Enter Cost for two people" step=0.1></input>
+
+				<br><br><br>
+				<input type="submit" class="btn-info" value="Predict">
+	
+
+
+			
+
+
+			
+
+		  
+		</form>
+		
+	</div>
+
+	
+	
+
+</body>
+</html>
