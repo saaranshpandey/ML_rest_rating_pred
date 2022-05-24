@@ -1,14 +1,14 @@
 from flask import Flask,render_template,url_for,request
-import pickle, gzip
+import pickle
 #from tensorflow import keras
 #from tensorflow.keras.preprocessing.sequence import pad_sequences
-import contractions
+#import contractions
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 import time
 
-from multiprocessing import Process, Queue
-import sys
+#from multiprocessing import Process, Queue
+#import sys
 
 var_details = {}
 with open('./model/var_details.pkl', 'rb') as f:
@@ -43,36 +43,6 @@ print(end - start)
 
 
 app = Flask(__name__)
-def preprocess_model(t,q):
-    #global model
-    #print(model)
-    print('started')
-    model = RandomForestRegressor(random_state=1, n_estimators=1500)
-    X = data_dict['X']
-    y = data_dict['y']
-    model.fit(X,y)
-    #print(model)
-    #temp_dict = {}
-    #temp_dict['model'] = model
-    print('Completed')
-    q.put(model)
-    print(q.get())
-    print(q.get())
-    #return model
-
-def get_output(X, q):
-    if not q.empty():
-        model = q.get()
-        #model =temp_dict['model'] #q.get()
-        y_pred = model.predict(X)[0]
-        print('prediction completed')
-
-    else:
-        print('queue empty')
-        y_pred = 1.0
-    
-    #print(y_pred)
-    return y_pred
 
 @app.route('/')
 def home():
